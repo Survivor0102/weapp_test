@@ -1,6 +1,17 @@
 // app.js
 App({
   onLaunch() {
+    // 初始化云开发环境
+    if (wx.cloud) {
+      wx.cloud.init({
+        env: 'todo-app-dev', // 替换为你的云环境 ID
+        traceUser: true
+      })
+      console.log('云开发初始化成功')
+    } else {
+      console.warn('当前基础库不支持云开发')
+    }
+
     // 初始化存储
     this.initStorage()
   },

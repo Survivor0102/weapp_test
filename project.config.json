@@ -1,5 +1,6 @@
 {
-  "description": "项目配置文件",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "miniprogramRoot": "./",
   "setting": {
     "urlCheck": true,
     "es6": true,
@@ -24,9 +25,9 @@
       "outputPath": ""
     }
   },
-  "compileType": "miniprogram",
-  "libVersion": "2.19.4",
   "appid": "touristappid",
   "projectname": "todo-miniprogram",
-  "condition": {}
+  "libVersion": "2.19.4",
+  "condition": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

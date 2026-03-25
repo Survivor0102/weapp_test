@@ -72,7 +72,7 @@
       </view>
 
       <!-- 内容区域 -->
-      <view class="todo-content" bindtap="onEditTodo">
+      <view class="todo-content" bindtap="onEditTodo" data-id="{{item.id}}">
         <view class="todo-title {{item.completed ? 'completed' : ''}}">
           {{item.title}}
         </view>

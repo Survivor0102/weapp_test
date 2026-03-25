@@ -1,0 +1,49 @@
+/* styles/variables.wxss - CSS 变量定义 */
+page {
+  /* 主题色 */
+  --primary-color: #3498db;
+  --primary-light: #5dade2;
+  --primary-dark: #2980b9;
+
+  /* 功能色 */
+  --success-color: #2ecc71;
+  --warning-color: #f39c12;
+  --danger-color: #e74c3c;
+  --info-color: #3498db;
+
+  /* 分类颜色 */
+  --cat-work: #3498db;
+  --cat-life: #2ecc71;
+  --cat-study: #9b59b6;
+  --cat-other: #95a5a6;
+
+  /* 优先级颜色 */
+  --priority-high: #e74c3c;
+  --priority-medium: #f39c12;
+  --priority-low: #2ecc71;
+
+  /* 基础色 */
+  --bg-color: #f5f6fa;
+  --card-bg: #ffffff;
+  --text-color: #2c3e50;
+  --text-light: #7f8c8d;
+  --border-color: #ecf0f1;
+
+  /* 间距 */
+  --spacing-xs: 10rpx;
+  --spacing-sm: 20rpx;
+  --spacing-md: 30rpx;
+  --spacing-lg: 40rpx;
+  --spacing-xl: 50rpx;
+
+  /* 圆角 */
+  --radius-sm: 8rpx;
+  --radius-md: 12rpx;
+  --radius-lg: 16rpx;
+  --radius-full: 50%;
+
+  /* 阴影 */
+  --shadow-sm: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8rpx 24rpx rgba(0, 0, 0, 0.12);
+}

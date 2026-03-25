@@ -1,0 +1,37 @@
+<!--components/filter-bar/filter-bar.wxml-->
+<view class="filter-bar">
+  <!-- 筛选类型 -->
+  <view class="filter-types">
+    <view class="filter-item {{currentFilter === 'all' ? 'active' : ''}}" 
+          data-type="all" 
+          bindtap="onFilterChange">
+      全部
+    </view>
+    <view class="filter-item {{currentFilter === 'active' ? 'active' : ''}}" 
+          data-type="active" 
+          bindtap="onFilterChange">
+      未完成
+    </view>
+    <view class="filter-item {{currentFilter === 'completed' ? 'active' : ''}}" 
+          data-type="completed" 
+          bindtap="onFilterChange">
+      已完成
+    </view>
+    <view class="filter-item {{currentFilter === 'category' ? 'active' : ''}}" 
+          bindtap="onManageCategory">
+      分类
+    </view>
+  </view>
+
+  <!-- 分类标签 -->
+  <view class="category-tags" wx:if="{{categories.length > 0 && currentFilter === 'category'}}">
+    <view class="category-tag {{selectedCategoryId === item.id ? 'active' : ''}}" 
+          wx:for="{{categories}}" 
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onCategorySelect"
+          style="background-color: {{selectedCategoryId === item.id ? item.color : '#f5f6fa'}}; color: {{selectedCategoryId === item.id ? '#fff' : item.color}}; border-color: {{item.color}}">
+      {{item.name}}
+    </view>
+  </view>
+</view>

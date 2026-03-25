@@ -1,0 +1,236 @@
+/* pages/category/category.wxss */
+@import '../../styles/variables.wxss';
+
+.container {
+  padding: 20rpx;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+/* 分类列表 */
+.category-list {
+  margin-bottom: 40rpx;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.category-color {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: var(--radius-sm);
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.category-name {
+  flex: 1;
+  font-size: 30rpx;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.category-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  padding: 10rpx 24rpx;
+  border-radius: var(--radius-sm);
+  font-size: 24rpx;
+  transition: all 0.3s;
+}
+
+.action-btn.edit {
+  background-color: var(--primary-light);
+  color: #fff;
+}
+
+.action-btn.delete {
+  background-color: #fee;
+  color: var(--danger-color);
+}
+
+/* 添加按钮 */
+.add-category-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 20rpx;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-md);
+  border: 4rpx dashed var(--border-color);
+  transition: all 0.3s;
+}
+
+.add-category-btn:active {
+  background-color: var(--bg-color);
+}
+
+.add-icon {
+  font-size: 60rpx;
+  color: var(--primary-color);
+  margin-bottom: 10rpx;
+}
+
+.add-text {
+  font-size: 26rpx;
+  color: var(--primary-color);
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 600rpx;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100rpx);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 2rpx solid var(--border-color);
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.modal-close {
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: var(--text-light);
+}
+
+.modal-body {
+  padding: 30rpx;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: var(--text-color);
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 20rpx;
+  background-color: var(--bg-color);
+  border-radius: var(--radius-sm);
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+/* 颜色选择网格 */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+
+.color-item {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.color-item:active {
+  transform: scale(0.9);
+}
+
+.color-item.active {
+  box-shadow: 0 0 0 4rpx rgba(0, 0, 0, 0.2);
+}
+
+.color-check {
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: bold;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+/* 弹窗底部按钮 */
+.modal-footer {
+  display: flex;
+  padding: 30rpx;
+  border-top: 2rpx solid var(--border-color);
+  gap: 20rpx;
+}
+
+.btn-cancel,
+.btn-save {
+  flex: 1;
+  padding: 24rpx 0;
+  border-radius: var(--radius-md);
+  font-size: 28rpx;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.btn-cancel {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.btn-save {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 500;
+}

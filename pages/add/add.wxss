@@ -1,0 +1,110 @@
+/* pages/add/add.wxss */
+@import '../../styles/variables.wxss';
+
+.container {
+  padding: 30rpx;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+/* 表单区域 */
+.form-section {
+  background-color: var(--card-bg);
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: var(--text-color);
+  margin-bottom: 20rpx;
+  font-weight: 500;
+}
+
+.form-label.required::before {
+  content: '* ';
+  color: var(--danger-color);
+}
+
+/* 标题输入框 */
+.title-input {
+  width: 100%;
+  min-height: 120rpx;
+  font-size: 30rpx;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.placeholder {
+  color: var(--text-light);
+}
+
+/* 选择器 */
+.picker {
+  padding: 20rpx 0;
+}
+
+.picker-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background-color: var(--bg-color);
+  border-radius: var(--radius-sm);
+}
+
+.placeholder-text {
+  color: var(--text-light);
+  font-size: 28rpx;
+}
+
+.arrow {
+  color: var(--text-light);
+  font-size: 36rpx;
+  margin-left: 10rpx;
+}
+
+/* 优先级标签 */
+.priority-tag {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* 按钮组 */
+.button-group {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 60rpx;
+  padding: 0 20rpx;
+}
+
+.btn-cancel,
+.btn-save {
+  flex: 1;
+  padding: 28rpx 0;
+  border-radius: var(--radius-md);
+  font-size: 30rpx;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.btn-cancel {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.btn-cancel:active {
+  opacity: 0.7;
+}
+
+.btn-save {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn-save:active {
+  opacity: 0.8;
+}

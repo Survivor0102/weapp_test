@@ -1,0 +1,35 @@
+<!--components/todo-item/todo-item.wxml-->
+<view class="todo-item {{todo.completed ? 'completed' : ''}}">
+  <!-- 复选框 -->
+  <view class="todo-checkbox {{todo.completed ? 'completed' : ''}}" 
+        bindtap="onToggleComplete">
+    <view class="checkbox-icon" wx:if="{{todo.completed}}">✓</view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="todo-content" bindtap="onEdit">
+    <view class="todo-title {{todo.completed ? 'completed' : ''}}">
+      {{todo.title}}
+    </view>
+    <view class="todo-meta">
+      <view class="todo-category" 
+            wx:if="{{category}}"
+            style="background-color: {{category.color}}">
+        {{category.name}}
+      </view>
+      <view class="todo-time" wx:if="{{todo.dueDate}}">
+        📅 {{formatDueDate(todo.dueDate)}}
+      </view>
+      <view class="todo-priority" 
+            wx:if="{{todo.priority}}"
+            style="color: {{getPriorityColor(todo.priority)}}">
+        {{priorityTexts[todo.priority]}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 删除按钮 -->
+  <view class="todo-delete" bindtap="onDelete">
+    <text>删除</text>
+  </view>
+</view>

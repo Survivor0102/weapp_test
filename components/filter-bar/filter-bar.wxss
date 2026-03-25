@@ -1,0 +1,50 @@
+/* components/filter-bar/filter-bar.wxss */
+@import '../../styles/variables.wxss';
+
+.filter-bar {
+  background-color: var(--card-bg);
+  margin: 0 20rpx 20rpx;
+  padding: 20rpx;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-types {
+  display: flex;
+}
+
+.filter-item {
+  flex: 1;
+  text-align: center;
+  padding: 12rpx 0;
+  font-size: 26rpx;
+  color: var(--text-light);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s;
+}
+
+.filter-item.active {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 分类标签 */
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+  gap: 16rpx;
+}
+
+.category-tag {
+  padding: 10rpx 24rpx;
+  border-radius: var(--radius-full);
+  font-size: 24rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.3s;
+}
+
+.category-tag.active {
+  transform: scale(1.05);
+}

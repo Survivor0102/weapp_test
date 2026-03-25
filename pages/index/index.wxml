@@ -1,0 +1,115 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 统计信息 -->
+  <view class="stats-card">
+    <view class="stats-item">
+      <text class="stats-number">{{stats.total}}</text>
+      <text class="stats-label">全部</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-number active">{{stats.active}}</text>
+      <text class="stats-label">未完成</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-number completed">{{stats.completed}}</text>
+      <text class="stats-label">已完成</text>
+    </view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-item {{currentFilter === 'all' ? 'active' : ''}}" 
+          data-type="all" 
+          bindtap="onFilterChange">
+      全部
+    </view>
+    <view class="filter-item {{currentFilter === 'active' ? 'active' : ''}}" 
+          data-type="active" 
+          bindtap="onFilterChange">
+      未完成
+    </view>
+    <view class="filter-item {{currentFilter === 'completed' ? 'active' : ''}}" 
+          data-type="completed" 
+          bindtap="onFilterChange">
+      已完成
+    </view>
+    <view class="filter-item {{currentFilter === 'category' ? 'active' : ''}}" 
+          bindtap="onManageCategory">
+      分类
+    </view>
+  </view>
+
+  <!-- 分类快捷筛选 -->
+  <view class="category-tags" wx:if="{{categories.length > 0}}">
+    <view class="category-tag {{selectedCategoryId === item.id ? 'active' : ''}}" 
+          wx:for="{{categories}}" 
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onCategorySelect"
+          style="background-color: {{selectedCategoryId === item.id ? item.color : '#f5f6fa'}}; color: {{selectedCategoryId === item.id ? '#fff' : item.color}}; border-color: {{item.color}}">
+      {{item.name}}
+    </view>
+  </view>
+
+  <!-- 待办列表 -->
+  <view class="todo-list">
+    <view class="todo-item" 
+          wx:for="{{filteredTodos}}" 
+          wx:key="id"
+          data-id="{{item.id}}">
+      <!-- 复选框 -->
+      <view class="todo-checkbox {{item.completed ? 'completed' : ''}}" 
+            bindtap="onToggleComplete">
+        <view class="checkbox-icon" wx:if="{{item.completed}}">✓</view>
+      </view>
+
+      <!-- 内容区域 -->
+      <view class="todo-content" bindtap="onEditTodo">
+        <view class="todo-title {{item.completed ? 'completed' : ''}}">
+          {{item.title}}
+        </view>
+        <view class="todo-meta">
+          <view class="todo-category" 
+                wx:if="{{item.categoryId}}"
+                style="background-color: {{getCategoryColor(item.categoryId)}}">
+            {{getCategoryName(item.categoryId)}}
+          </view>
+          <view class="todo-time" wx:if="{{item.dueDate}}">
+            📅 {{formatDueDate(item.dueDate)}}
+          </view>
+          <view class="todo-priority" 
+                wx:if="{{item.priority}}"
+                style="color: {{getPriorityColor(item.priority)}}">
+            {{getPriorityText(item.priority)}}
+          </view>
+        </view>
+      </view>
+
+      <!-- 删除按钮 -->
+      <view class="todo-delete" bindtap="onDeleteTodo" data-id="{{item.id}}">
+        <text>删除</text>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{filteredTodos.length === 0}}">
+      <view class="empty-icon">📝</view>
+      <view class="empty-text">
+        <text wx:if="{{currentFilter === 'all'}}">还没有待办事项</text>
+        <text wx:elif="{{currentFilter === 'active'}}">没有未完成的待办</text>
+        <text wx:elif="{{currentFilter === 'completed'}}">没有已完成的待办</text>
+        <text wx:else>该分类下没有待办</text>
+      </view>
+      <view class="empty-hint" wx:if="{{currentFilter === 'all'}}">
+        点击下方按钮添加第一个待办
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="add-button" bindtap="onAddTodo">
+    <text class="add-icon">+</text>
+  </view>
+</view>

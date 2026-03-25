@@ -1,0 +1,98 @@
+/* components/todo-item/todo-item.wxss */
+@import '../../styles/variables.wxss';
+
+.todo-item {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--card-bg);
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
+}
+
+.todo-item.completed {
+  opacity: 0.7;
+}
+
+.todo-item:active {
+  transform: scale(0.98);
+}
+
+/* 复选框 */
+.todo-checkbox {
+  width: 44rpx;
+  height: 44rpx;
+  border: 3rpx solid var(--border-color);
+  border-radius: var(--radius-full);
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.todo-checkbox.completed {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.checkbox-icon {
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+/* 内容区域 */
+.todo-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-title {
+  font-size: 30rpx;
+  color: var(--text-color);
+  margin-bottom: 12rpx;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.todo-title.completed {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+.todo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  align-items: center;
+}
+
+.todo-category {
+  padding: 4rpx 16rpx;
+  border-radius: var(--radius-full);
+  font-size: 22rpx;
+  color: #fff;
+}
+
+.todo-time {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.todo-priority {
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+/* 删除按钮 */
+.todo-delete {
+  padding: 12rpx 20rpx;
+  margin-left: 16rpx;
+  color: var(--danger-color);
+  font-size: 24rpx;
+  flex-shrink: 0;
+}

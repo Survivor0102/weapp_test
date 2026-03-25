@@ -1,0 +1,94 @@
+<!--pages/add/add.wxml-->
+<view class="container">
+  <!-- 标题输入 -->
+  <view class="form-section">
+    <view class="form-label required">待办内容</view>
+    <textarea 
+      class="title-input" 
+      placeholder="输入待办事项..." 
+      placeholder-class="placeholder"
+      maxlength="200"
+      auto-height
+      value="{{title}}"
+      bindinput="onTitleInput"
+      focus
+    />
+  </view>
+
+  <!-- 分类选择 -->
+  <view class="form-section">
+    <view class="form-label">分类</view>
+    <picker 
+      class="picker" 
+      range="{{categories}}" 
+      range-key="name"
+      value="{{categoryIndex}}"
+      bindchange="onCategoryChange"
+    >
+      <view class="picker-value">
+        <text wx:if="{{categoryId}}">{{getCategoryName(categoryId)}}</text>
+        <text wx:else class="placeholder-text">选择分类</text>
+        <text class="arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 优先级选择 -->
+  <view class="form-section">
+    <view class="form-label">优先级</view>
+    <picker 
+      class="picker" 
+      range="{{priorityOptions}}" 
+      range-key="label"
+      value="{{priorityIndex}}"
+      bindchange="onPriorityChange"
+    >
+      <view class="picker-value">
+        <view class="priority-tag" style="color: {{getPriorityColor(priority)}}">
+          {{getPriorityLabel(priority)}}
+        </view>
+        <text class="arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 日期选择 -->
+  <view class="form-section">
+    <view class="form-label">截止日期</view>
+    <picker 
+      class="picker" 
+      mode="date" 
+      value="{{dueDate}}"
+      bindchange="onDateChange"
+    >
+      <view class="picker-value">
+        <text wx:if="{{dueDate}}">{{dueDate}}</text>
+        <text wx:else class="placeholder-text">选择日期</text>
+        <text class="arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 时间选择 -->
+  <view class="form-section">
+    <view class="form-label">截止时间</view>
+    <picker 
+      class="picker" 
+      mode="time" 
+      value="{{dueTime}}"
+      bindchange="onTimeChange"
+    >
+      <view class="picker-value">
+        <text wx:if="{{dueTime}}">{{dueTime}}</text>
+        <text wx:else class="placeholder-text">选择时间</text>
+        <text class="arrow">›</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="button-group">
+    <view class="btn-cancel" bindtap="onCancel">取消</view>
+    <view class="btn-save" bindtap="onSave">保存</view>
+  </view>
+</view>

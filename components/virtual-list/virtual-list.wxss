@@ -1,0 +1,28 @@
+/* components/virtual-list/virtual-list.wxss */
+.virtual-list {
+  width: 100%;
+  overflow: hidden;
+}
+
+.scroll-view {
+  width: 100%;
+  will-change: transform;
+}
+
+.virtual-spacer {
+  width: 100%;
+  position: relative;
+}
+
+.virtual-item {
+  width: 100%;
+  will-change: transform;
+}
+
+.normal-list {
+  width: 100%;
+}
+
+.normal-item {
+  width: 100%;
+}

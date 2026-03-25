@@ -66,6 +66,23 @@
   margin-left: 10rpx;
 }
 
+/* 已选标签 */
+.selected-tag,
+.priority-tag {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.tag-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: var(--radius-full);
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
 /* 优先级标签 */
 .priority-tag {
   font-size: 28rpx;

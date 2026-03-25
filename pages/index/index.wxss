@@ -52,6 +52,25 @@
   background-color: var(--border-color);
 }
 
+/* 番茄钟按钮 */
+.pomodoro-btn {
+  cursor: pointer;
+}
+
+.pomodoro-btn:active {
+  transform: scale(0.95);
+}
+
+/* 专注时间标签 */
+.todo-focus {
+  padding: 4rpx 16rpx;
+  border-radius: var(--radius-full);
+  font-size: 22rpx;
+  background-color: #fff5f5;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
 /* 筛选栏 */
 .filter-bar {
   display: flex;

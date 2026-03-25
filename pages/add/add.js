@@ -9,8 +9,14 @@ Page({
     isEdit: false,
     title: '',
     categoryId: '',
+    categoryName: '',
+    categoryColor: '',
     categories: [],
+    categoryIndex: 0,
     priority: 'medium',
+    priorityLabel: '中',
+    priorityColor: '#f39c12',
+    priorityIndex: 1,
     dueDate: '',
     dueTime: '',
     priorityOptions: [
@@ -53,10 +59,28 @@ Page({
       const dueDate = todo.dueDate ? formatDate(todo.dueDate) : ''
       const dueTime = todo.dueDate ? this.formatTime(todo.dueDate) : ''
       
+      // 获取分类信息
+      const category = this.data.categories.find(c => c.id === todo.categoryId)
+      const categoryName = category ? category.name : '未分类'
+      const categoryColor = category ? category.color : '#95a5a6'
+      const categoryIndex = category ? this.data.categories.findIndex(c => c.id === todo.categoryId) : 0
+      
+      // 获取优先级信息
+      const priorityOption = this.data.priorityOptions.find(p => p.value === (todo.priority || 'medium'))
+      const priorityLabel = priorityOption ? priorityOption.label : '中'
+      const priorityColor = priorityOption ? priorityOption.color : '#f39c12'
+      const priorityIndex = this.data.priorityOptions.findIndex(p => p.value === (todo.priority || 'medium'))
+      
       this.setData({
         title: todo.title || '',
         categoryId: todo.categoryId || '',
+        categoryName,
+        categoryColor,
+        categoryIndex,
         priority: todo.priority || 'medium',
+        priorityLabel,
+        priorityColor,
+        priorityIndex,
         dueDate,
         dueTime
       })
@@ -87,8 +111,13 @@ Page({
    */
   onCategoryChange(e) {
     const index = e.detail.value
-    const categoryId = this.data.categories[index].id
-    this.setData({ categoryId })
+    const category = this.data.categories[index]
+    this.setData({ 
+      categoryId: category.id,
+      categoryName: category.name,
+      categoryColor: category.color,
+      categoryIndex: index
+    })
   },
 
   /**
@@ -96,8 +125,13 @@ Page({
    */
   onPriorityChange(e) {
     const index = e.detail.value
-    const priority = this.data.priorityOptions[index].value
-    this.setData({ priority })
+    const option = this.data.priorityOptions[index]
+    this.setData({ 
+      priority: option.value,
+      priorityLabel: option.label,
+      priorityColor: option.color,
+      priorityIndex: index
+    })
   },
 
   /**
@@ -181,46 +215,5 @@ Page({
    */
   onCancel() {
     navigateBack()
-  },
-
-  /**
-   * 获取分类名称
-   */
-  getCategoryName(categoryId) {
-    const category = this.data.categories.find(c => c.id === categoryId)
-    return category ? category.name : ''
-  },
-
-  /**
-   * 获取优先级索引
-   */
-  get priorityIndex() {
-    const { priority, priorityOptions } = this.data
-    return priorityOptions.findIndex(p => p.value === priority)
-  },
-
-  /**
-   * 获取分类索引
-   */
-  get categoryIndex() {
-    const { categoryId, categories } = this.data
-    if (!categoryId) return 0
-    return categories.findIndex(c => c.id === categoryId)
-  },
-
-  /**
-   * 获取优先级颜色
-   */
-  getPriorityColor(priority) {
-    const option = this.data.priorityOptions.find(p => p.value === priority)
-    return option ? option.color : '#f39c12'
-  },
-
-  /**
-   * 获取优先级标签
-   */
-  getPriorityLabel(priority) {
-    const option = this.data.priorityOptions.find(p => p.value === priority)
-    return option ? option.label : '中'
   }
 })

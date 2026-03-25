@@ -1,0 +1,83 @@
+<!--pages/pomodoro/pomodoro.wxml-->
+<view class="container">
+  <!-- 模式切换 -->
+  <view class="mode-tabs">
+    <view class="mode-tab {{mode === 'work' ? 'active' : ''}}" 
+          data-mode="work" 
+          bindtap="onSwitchMode"
+          style="{{mode === 'work' ? 'background-color: ' + modes.work.color : ''}}">
+      🍅 工作
+    </view>
+    <view class="mode-tab {{mode === 'shortBreak' ? 'active' : ''}}" 
+          data-mode="shortBreak" 
+          bindtap="onSwitchMode"
+          style="{{mode === 'shortBreak' ? 'background-color: ' + modes.shortBreak.color : ''}}">
+      ☕ 短休息
+    </view>
+    <view class="mode-tab {{mode === 'longBreak' ? 'active' : ''}}" 
+          data-mode="longBreak" 
+          bindtap="onSwitchMode"
+          style="{{mode === 'longBreak' ? 'background-color: ' + modes.longBreak.color : ''}}">
+      🌴 长休息
+    </view>
+  </view>
+
+  <!-- 计时器显示 -->
+  <view class="timer-section" style="background-color: {{getCurrentColor()}}">
+    <view class="timer-display">
+      <text class="timer-time">{{formatTime(currentTime)}}</text>
+      <text class="timer-label">{{getCurrentLabel()}}中</text>
+    </view>
+
+    <!-- 关联待办 -->
+    <view class="linked-todo" wx:if="{{currentTodo}}" bindtap="onSelectTodo">
+      <view class="todo-tag">
+        <text class="todo-icon">📝</text>
+        <text class="todo-title">{{getTodoTitle(currentTodo)}}</text>
+      </view>
+      <view class="unlink-btn" bindtap="onUnlinkTodo" catchtap="true">✕</view>
+    </view>
+    <view class="link-todo" wx:else bindtap="onSelectTodo">
+      <text class="link-text">+ 关联待办事项</text>
+    </view>
+
+    <!-- 控制按钮 -->
+    <view class="control-buttons">
+      <view class="btn-reset" bindtap="onReset">重置</view>
+      <view class="btn-toggle" bindtap="onToggleTimer">
+        {{isRunning && !isPaused ? '暂停' : (isPaused ? '继续' : '开始')}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-section">
+    <view class="stats-title">今日专注</view>
+    <view class="stats-tomatoes">
+      <view class="tomato" wx:for="{{[0,1,2,3,4,5,6,7]}}" wx:key="*this">
+        <text wx:if="{{index < todayPomodoros}}">🍅</text>
+        <text wx:else class="tomato-empty">🍅</text>
+      </view>
+    </view>
+    <view class="stats-count">已完成 {{todayPomodoros}} 个番茄钟</view>
+  </view>
+
+  <!-- 待办选择器 -->
+  <view class="picker-overlay" wx:if="{{showTodoPicker}}" bindtap="onClosePicker">
+    <view class="picker-content" catchtap="true">
+      <view class="picker-header">
+        <text class="picker-title">选择关联待办</text>
+        <view class="picker-close" bindtap="onClosePicker">✕</view>
+      </view>
+      <view class="picker-body">
+        <view class="todo-option" wx:for="{{todos}}" wx:key="id" data-id="{{item.id}}" bindtap="onTodoSelect">
+          <text class="todo-option-title">{{item.title}}</text>
+          <text class="todo-option-check" wx:if="{{currentTodo === item.id}}">✓</text>
+        </view>
+        <view class="empty-tip" wx:if="{{todos.length === 0}}">
+          暂无未完成的待办事项
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

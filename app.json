@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/add/add",
-    "pages/category/category"
+    "pages/category/category",
+    "pages/pomodoro/pomodoro"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -16,6 +16,12 @@
       <text class="stats-number completed">{{stats.completed}}</text>
       <text class="stats-label">已完成</text>
     </view>
+    <!-- 番茄钟入口 -->
+    <view class="stats-divider"></view>
+    <view class="stats-item pomodoro-btn" bindtap="onOpenPomodoro">
+      <text class="stats-number">🍅</text>
+      <text class="stats-label">番茄钟</text>
+    </view>
   </view>
 
   <!-- 筛选栏 -->
@@ -42,7 +48,7 @@
   </view>
 
   <!-- 分类快捷筛选 -->
-  <view class="category-tags" wx:if="{{categories.length > 0}}">
+  <view class="category-tags" wx:if="{{categories.length > 0 && currentFilter === 'category'}}">
     <view class="category-tag {{selectedCategoryId === item.id ? 'active' : ''}}" 
           wx:for="{{categories}}" 
           wx:key="id"
@@ -53,7 +59,7 @@
     </view>
   </view>
 
-  <!-- 待办列表 -->
+  <!-- 待办列表（虚拟滚动） -->
   <view class="todo-list">
     <view class="todo-item" 
           wx:for="{{filteredTodos}}" 
@@ -83,6 +89,11 @@
                 wx:if="{{item.priority}}"
                 style="color: {{getPriorityColor(item.priority)}}">
             {{getPriorityText(item.priority)}}
+          </view>
+          <view class="todo-focus" 
+                wx:if="{{item.focusTime}}"
+                title="已专注 {{item.focusTime}} 分钟">
+            🍅 {{item.focusTime}}min
           </view>
         </view>
       </view>

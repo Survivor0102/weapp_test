@@ -164,6 +164,13 @@ Page({
   },
 
   /**
+   * 打开番茄钟
+   */
+  onOpenPomodoro() {
+    navigateTo('/pages/pomodoro/pomodoro')
+  },
+
+  /**
    * 格式化时间
    */
   formatDueDate(timestamp) {

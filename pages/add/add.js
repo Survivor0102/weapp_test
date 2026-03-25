@@ -27,17 +27,16 @@ Page({
   },
 
   onLoad(options) {
-    this.loadCategories()
-    
     // 如果有 id 参数，说明是编辑模式
     if (options.id) {
       this.setData({
         id: options.id,
         isEdit: true
       })
-      this.loadTodoData(options.id)
+      this.loadCategoriesAndTodo(options.id)
       wx.setNavigationBarTitle({ title: '编辑待办' })
     } else {
+      this.loadCategories()
       wx.setNavigationBarTitle({ title: '新增待办' })
     }
   },
@@ -51,40 +50,48 @@ Page({
   },
 
   /**
-   * 加载待办数据（编辑模式）
+   * 加载分类和待办数据（编辑模式）
    */
-  loadTodoData(id) {
-    const todo = getTodoById(id)
-    if (todo) {
-      const dueDate = todo.dueDate ? formatDate(todo.dueDate) : ''
-      const dueTime = todo.dueDate ? this.formatTime(todo.dueDate) : ''
-      
-      // 获取分类信息
-      const category = this.data.categories.find(c => c.id === todo.categoryId)
-      const categoryName = category ? category.name : '未分类'
-      const categoryColor = category ? category.color : '#95a5a6'
-      const categoryIndex = category ? this.data.categories.findIndex(c => c.id === todo.categoryId) : 0
-      
-      // 获取优先级信息
-      const priorityOption = this.data.priorityOptions.find(p => p.value === (todo.priority || 'medium'))
-      const priorityLabel = priorityOption ? priorityOption.label : '中'
-      const priorityColor = priorityOption ? priorityOption.color : '#f39c12'
-      const priorityIndex = this.data.priorityOptions.findIndex(p => p.value === (todo.priority || 'medium'))
-      
-      this.setData({
-        title: todo.title || '',
-        categoryId: todo.categoryId || '',
-        categoryName,
-        categoryColor,
-        categoryIndex,
-        priority: todo.priority || 'medium',
-        priorityLabel,
-        priorityColor,
-        priorityIndex,
-        dueDate,
-        dueTime
-      })
+  loadCategoriesAndTodo(todoId) {
+    const categories = getAllCategories()
+    const todo = getTodoById(todoId)
+    
+    if (!todo) {
+      showToast('待办不存在', 'none')
+      setTimeout(() => navigateBack(), 500)
+      return
     }
+
+    const dueDate = todo.dueDate ? formatDate(todo.dueDate) : ''
+    const dueTime = todo.dueDate ? this.formatTime(todo.dueDate) : ''
+    
+    // 获取分类信息
+    const category = categories.find(c => c.id === todo.categoryId)
+    const categoryName = category ? category.name : '未分类'
+    const categoryColor = category ? category.color : '#95a5a6'
+    const categoryIndex = category ? categories.findIndex(c => c.id === todo.categoryId) : 0
+    
+    // 获取优先级信息
+    const priorityOptions = this.data.priorityOptions
+    const priorityOption = priorityOptions.find(p => p.value === (todo.priority || 'medium'))
+    const priorityLabel = priorityOption ? priorityOption.label : '中'
+    const priorityColor = priorityOption ? priorityOption.color : '#f39c12'
+    const priorityIndex = priorityOptions.findIndex(p => p.value === (todo.priority || 'medium'))
+    
+    this.setData({
+      categories,
+      title: todo.title || '',
+      categoryId: todo.categoryId || '',
+      categoryName,
+      categoryColor,
+      categoryIndex,
+      priority: todo.priority || 'medium',
+      priorityLabel,
+      priorityColor,
+      priorityIndex,
+      dueDate,
+      dueTime
+    })
   },
 
   /**

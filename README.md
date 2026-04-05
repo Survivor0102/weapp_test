@@ -44,7 +44,7 @@
 
 ```bash
 # 克隆项目
-cd weapp_web
+cd weapp_test
 
 # 启动后端（终端 1）
 cd backend

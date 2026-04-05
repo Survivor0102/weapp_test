@@ -32,7 +32,7 @@
               size="large"
               @click="handleStart"
             >
-              <el-icon><Play /></el-icon>
+              <el-icon><VideoPlay /></el-icon>
               开始
             </el-button>
             <el-button
@@ -41,7 +41,7 @@
               size="large"
               @click="handlePause"
             >
-              <el-icon><Pause /></el-icon>
+              <el-icon><VideoPause /></el-icon>
               暂停
             </el-button>
             
@@ -111,7 +111,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import { Play, Pause, Refresh } from '@element-plus/icons-vue'
+import { VideoPlay, VideoPause, Refresh } from '@element-plus/icons-vue'
 import { useTodoStore } from '../stores/todo.js'
 import { usePomodoroStore } from '../stores/pomodoro.js'
 

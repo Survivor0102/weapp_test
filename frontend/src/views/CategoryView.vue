@@ -94,7 +94,8 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { useCategoryStore } from '../stores/category'
+import { Plus } from '@element-plus/icons-vue'
+import { useCategoryStore } from '../stores/category.js'
 
 const categoryStore = useCategoryStore()
 

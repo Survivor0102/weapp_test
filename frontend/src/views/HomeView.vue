@@ -136,8 +136,9 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { useTodoStore } from '../stores/todo'
-import { useCategoryStore } from '../stores/category'
+import { Edit, Delete } from '@element-plus/icons-vue'
+import { useTodoStore } from '../stores/todo.js'
+import { useCategoryStore } from '../stores/category.js'
 
 const router = useRouter()
 const todoStore = useTodoStore()

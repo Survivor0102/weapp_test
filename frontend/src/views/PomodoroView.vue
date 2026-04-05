@@ -30,26 +30,26 @@
               v-if="!pomodoroStore.isRunning"
               type="success"
               size="large"
-              :icon="Play"
               @click="handleStart"
             >
+              <el-icon><Play /></el-icon>
               开始
             </el-button>
             <el-button
               v-else
               type="warning"
               size="large"
-              :icon="Pause"
               @click="handlePause"
             >
+              <el-icon><Pause /></el-icon>
               暂停
             </el-button>
             
             <el-button
               size="large"
-              :icon="Refresh"
               @click="handleReset"
             >
+              <el-icon><Refresh /></el-icon>
               重置
             </el-button>
           </div>
@@ -112,8 +112,8 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Play, Pause, Refresh } from '@element-plus/icons-vue'
-import { useTodoStore } from '../stores/todo'
-import { usePomodoroStore } from '../stores/pomodoro'
+import { useTodoStore } from '../stores/todo.js'
+import { usePomodoroStore } from '../stores/pomodoro.js'
 
 const todoStore = useTodoStore()
 const pomodoroStore = usePomodoroStore()

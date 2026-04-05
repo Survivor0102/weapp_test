@@ -84,8 +84,8 @@
 import { ref, reactive, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { useTodoStore } from '../stores/todo'
-import { useCategoryStore } from '../stores/category'
+import { useTodoStore } from '../stores/todo.js'
+import { useCategoryStore } from '../stores/category.js'
 
 const router = useRouter()
 const route = useRoute()
